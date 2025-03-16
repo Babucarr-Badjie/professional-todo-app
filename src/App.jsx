@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Header } from "./components/Header";
+import { Tabs } from "./components/Tabs";
+import { TodoInput } from "./components/TodoInput";
+import { TodoList } from "./components/TodoList";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const todos = [
+    {
+      id: 1,
+      task: "Buy groceries",
+      completed: false,
+      due: "2025-03-16",
+      priority: "High",
+    },
+    {
+      id: 2,
+      task: "Finish project report",
+      completed: true,
+      due: "2025-03-14",
+      priority: "Medium",
+    },
+    {
+      id: 3,
+      task: "Call the doctor",
+      completed: false,
+      due: "2025-03-17",
+      priority: "High",
+    },
+    {
+      id: 4,
+      task: "Exercise for 30 minutes",
+      completed: false,
+      due: "2025-03-15",
+      priority: "Low",
+    },
+    {
+      id: 5,
+      task: "Read a book",
+      completed: true,
+      due: "2025-03-20",
+      priority: "Low",
+    },
+  ];
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header todos={todos} />
+      <Tabs todos={todos} />
+      <TodoList todos={todos} />
+      <TodoInput />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
