@@ -1,5 +1,5 @@
 export function Tabs(props) {
-  const { todos } = props;
+  const { todos, selectedTab, setSelectedTab } = props;
 
   const tabs = ["All Todos", "Open Todos", "Completed Todos"];
   return (
@@ -9,17 +9,26 @@ export function Tabs(props) {
           tab === "All Todos"
             ? todos.length
             : tab === "Open Todos"
-            ? todos.filter((value) => !value.completed).length
-            : todos.filter((value) => value.completed).length;
+            ? todos.filter((value) => !value.complete).length
+            : todos.filter((value) => value.complete).length;
 
         return (
-          <button className="tab-button" key={tabIndex}>
+          <button
+            className={
+              "tab-button " + (tab === selectedTab ? "tab-selected" : "")
+            }
+            key={tabIndex}
+            onClick={() => {
+              setSelectedTab(tab);
+            }}
+          >
             <h4>
               {tab} <span>({numOfTasks})</span>
             </h4>
           </button>
         );
       })}
+      <hr />
     </nav>
   );
 }
